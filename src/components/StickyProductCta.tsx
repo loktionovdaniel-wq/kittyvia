@@ -13,7 +13,7 @@ export function StickyProductCta({
   href: string;
   slug: string;
   category: string;
-  priceValue: number;
+  priceValue?: number;
 }) {
   return (
     <div className="sticky-product-cta">

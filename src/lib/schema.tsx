@@ -32,14 +32,7 @@ export function productSchema(product: Product) {
     image: product.gallery.map((image) => `${siteConfig.url}${image}`),
     brand: { '@type': 'Brand', name: product.brand },
     category: product.categoryLabel,
-    offers: {
-      '@type': 'Offer',
-      url: product.affiliateUrl,
-      priceCurrency: 'USD',
-      price: product.priceValue,
-      availability: 'https://schema.org/InStock',
-      seller: { '@type': 'Organization', name: product.brand },
-    },
+    url: `${siteConfig.url}/shop/${product.slug}`,
   };
 }
 

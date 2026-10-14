@@ -1,113 +1,99 @@
-# Kitty Via — premium affiliate catalog
+# Kitty Via v3
 
-A production-oriented Next.js 16 site for `kittyvia.com`, designed for Pinterest visitors who need a fast, clear path from inspiration to a product decision.
+Production-oriented Next.js affiliate catalog for **kittyvia.com**.
 
-## What is included
+## What changed in v3
 
-- Mobile-first home page, catalog, collection pages, comparison table, and detailed product guides.
-- Three initial PETLIBRO offers: Dockstream 2, One RFID Smart Feeder, and Luma Smart Litter Box.
-- Clear affiliate disclosures near shopping actions.
-- Vercel Web Analytics and Speed Insights.
-- Optional consent-gated GA4 with custom `affiliate_click` events.
-- Pinterest/UTM campaign capture for the current browser session.
-- Product, website, Open Graph, sitemap, robots, and manifest metadata.
-- Local optimized WebP images and an organized content model.
-- Accessibility-minded navigation, keyboard focus, responsive layouts, and reduced-motion support.
+- Catalog expanded to **6 distinct product lines / 8 confirmed affiliate destinations**.
+- Product imagery replaced with references captured from the exact PETLIBRO offers/product pages supplied during setup.
+- Polar and One RFID pages now expose the confirmed color-specific affiliate links.
+- Granary Camera offer is labeled **Dual Bowl Black** to match the confirmed Impact product image/link.
+- Prices are intentionally shown as **“See current price”** so stale promotions are not presented as current.
+- Outbound clicks are tracked with Vercel Analytics and, optionally, GA4.
+- Pinterest attribution (`utm_*` and `pin_id`) is captured in-session and attached to GA4 affiliate-click events.
+- Catalog remains content-driven: add or update products in `src/content/products.ts`.
 
-## Important affiliate-link note
+## Confirmed affiliate destinations
 
-The Dockstream and Luma defaults use the Impact links already created:
+| Product / version | Link |
+| --- | --- |
+| Dockstream 2 Smart Cordless Fountain | https://petlibro.sjv.io/E0j33Q |
+| Luma Smart Litter Box | https://petlibro.sjv.io/3k3Gnk |
+| Granary Smart Feeder 5L | https://petlibro.sjv.io/1G3m0x |
+| Granary Smart Camera Feeder Dual Bowl — Black | https://petlibro.sjv.io/R0XkvR |
+| Polar Smart Wet Food Feeder — Black | https://petlibro.sjv.io/oNW71E |
+| Polar Smart Wet Food Feeder — White | https://petlibro.sjv.io/6kKJrb |
+| One RFID Smart Feeder — Charcoal | https://petlibro.sjv.io/zzk7EW |
+| One RFID Smart Feeder — Mist | https://petlibro.sjv.io/n4z7G9 |
 
-- Dockstream: `https://petlibro.sjv.io/R0Xq7X`
-- Luma: `https://petlibro.sjv.io/n4zxYV`
+## Deploy over the existing Vercel project
 
-The **One RFID Smart Feeder currently falls back to the normal PETLIBRO product page** because its Impact tracking link was not provided. Create that tracking link in Impact and add it as `NEXT_PUBLIC_AFFILIATE_ONE_RFID_URL` in Vercel before launch so purchases can be attributed.
+Your GitHub repository and Vercel project already exist. Do **not** create another project.
 
-## Local setup
+1. Unzip this package.
+2. In the existing `kittyvia` GitHub repository, replace the project files with the contents of this folder.
+3. Commit the changes to `main`.
+4. Vercel will detect the commit and deploy automatically.
+5. Open the generated `*.vercel.app` deployment and verify all six product pages before connecting `kittyvia.com`.
 
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
-```
+## Optional Vercel environment variables
 
-Open `http://localhost:3000`.
+The project has safe fallback values for every confirmed affiliate link, so it works immediately after upload. You can later override any URL in **Vercel → Project → Settings → Environment Variables** using the names in `.env.example`.
 
-## Deploy to Vercel
+For GA4, add:
 
-1. Create a GitHub repository and upload this project.
-2. In Vercel, choose **Add New → Project** and import the repository.
-3. Framework preset should detect **Next.js** automatically.
-4. Add environment variables from `.env.example`.
-5. Deploy.
-6. In Vercel project settings, open **Domains** and add:
-   - `kittyvia.com`
-   - `www.kittyvia.com`
-7. Vercel will show the DNS records to add in Cloudflare. Add those records in Cloudflare DNS. Use the exact values Vercel provides.
-8. Choose one canonical domain in Vercel and redirect the other to it.
-
-Do not deploy this project through Cloudflare Workers unless you intentionally migrate the hosting architecture.
-
-## Analytics setup
-
-### Vercel
-`@vercel/analytics` and `@vercel/speed-insights` are already installed. Vercel page-view and performance data will appear after deployment.
-
-### Google Analytics 4
-Create a GA4 web data stream, then set:
-
-```bash
+```text
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ```
 
-The site will show a consent choice before loading GA4. Shopping buttons fire an `affiliate_click` event with:
+Optional contact/Pinterest values:
 
-- `product_slug`
-- `product_category`
-- `link_placement`
-- campaign parameters stored from the landing URL
+```text
+NEXT_PUBLIC_CONTACT_EMAIL=hello@kittyvia.com
+NEXT_PUBLIC_PINTEREST_URL=https://www.pinterest.com/yourprofile/
+```
 
-Recommended GA4 reports:
+## Pinterest links
 
-- Landing page by `utm_source`
-- Affiliate clicks by product
-- Affiliate clicks by placement
-- Pinterest campaign / pin identifier
+For product pins, link to the matching Kitty Via product page rather than directly to PETLIBRO when you want first-party analytics. Example:
 
-## Add or replace an offer
+```text
+https://kittyvia.com/shop/polar-smart-wet-food-feeder?utm_source=pinterest&utm_medium=organic&utm_campaign=kittyvia&utm_content=PIN_NAME
+```
 
-The entire catalog lives in `src/content/products.ts`. Each product has:
+The product page then sends the visitor through the confirmed affiliate link.
 
-- copy and category
-- images
-- affiliate URL
-- price reference
-- benefits and caveats
-- specifications
-- FAQs
-- comparison fields
-- source URL and review date
+## Product content
 
-See `src/content/README.md` for the safe checklist.
+All product records live in:
 
-## Before public launch
+```text
+src/content/products.ts
+```
 
-- Generate the One RFID Impact link and add it in Vercel.
-- Create `hello@kittyvia.com` or change the contact email in `src/content/site.ts`.
-- Add the actual Pinterest profile URL in `src/content/site.ts`.
-- Create a GA4 property if desired.
-- Connect Google Search Console and submit `/sitemap.xml`.
-- Test every affiliate link on mobile and desktop.
-- Confirm current prices, product details, shipping, warranty, and availability.
-- Replace or add official affiliate-program product assets if the program terms require them.
+Each record controls the card, product page, compare table, category page, SEO data, product source, and outbound link.
 
-## Design system
+## Images
 
-The site uses plain CSS split into:
+Product reference assets live in:
 
-- `src/styles/tokens.css` — colors, typography, radius, shadows
-- `src/styles/base.css` — reset and global typography
-- `src/styles/components.css` — reusable interface components
-- `src/styles/pages.css` — page-level layouts
+```text
+public/images/products-v3/
+```
 
-This keeps visual edits centralized and makes future offers easy to add without rewriting the layout.
+They were created from exact PETLIBRO product/offer references supplied during setup, not from the earlier incorrect AI product renders.
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Production checks:
+
+```bash
+npm run typecheck
+npm run lint
+npm run build
+```

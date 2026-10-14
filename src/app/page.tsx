@@ -90,9 +90,9 @@ export default function HomePage() {
       <section className="section section--paper">
         <div className="container">
           <div className="section-heading section-heading--center">
-            <p className="eyebrow">Three strong places to start</p>
-            <h2>Our launch shortlist</h2>
-            <p className="lede">One focused pick for hydration, feeding, and litter — with the reasons and tradeoffs visible before you leave Kitty Via.</p>
+            <p className="eyebrow">Our current catalog</p>
+            <h2>Six focused picks, one clear catalog</h2>
+            <p className="lede">From hydration to RFID meal control and refrigerated wet food, every pick has a specific job — and the tradeoffs are visible before you leave Kitty Via.</p>
           </div>
           <div className="product-grid">
             {summaries.map((product) => <ProductCard key={product.slug} product={product} placement="home_featured" />)}

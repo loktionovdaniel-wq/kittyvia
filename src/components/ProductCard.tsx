@@ -7,11 +7,13 @@ import { AffiliateButton } from '@/components/AffiliateButton';
 import { ArrowRightIcon } from '@/components/Icons';
 
 export function ProductCard({ product, placement = 'product_card' }: { product: ProductSummary; placement?: string }) {
+  const variantsLabel = product.variants && product.variants.length > 1 ? `${product.variants.length} confirmed versions` : null;
   return (
     <article className={`product-card product-card--${product.accent}`}>
-      <Link href={`/shop/${product.slug}`} className="product-card__media" aria-label={`Read about ${product.name}`}>
-        <Image src={product.image} alt={`${product.name} lifestyle view`} fill sizes="(max-width: 760px) 100vw, 33vw" />
+      <Link href={`/shop/${product.slug}`} className="product-card__media product-card__media--official" aria-label={`Read about ${product.name}`}>
+        <Image src={product.image} alt={`${product.name} official product reference`} fill sizes="(max-width: 760px) 100vw, 33vw" />
         <span className="product-card__badge">{product.badge}</span>
+        <span className="official-photo-pill">Official product reference</span>
       </Link>
       <div className="product-card__content">
         <p className="eyebrow">{product.brand} · {product.categoryLabel}</p>
@@ -20,7 +22,7 @@ export function ProductCard({ product, placement = 'product_card' }: { product: 
         <p className="product-card__best"><strong>Best for:</strong> {product.bestFor}</p>
         <div className="product-card__meta">
           <span className="price">{product.priceLabel}</span>
-          <span className="price-note">at time of review</span>
+          {variantsLabel ? <span className="price-note">{variantsLabel}</span> : <span className="price-note">on PETLIBRO</span>}
         </div>
         <div className="product-card__actions">
           <Link href={`/shop/${product.slug}`} className="text-link">
@@ -32,7 +34,9 @@ export function ProductCard({ product, placement = 'product_card' }: { product: 
             category={product.category}
             placement={placement}
             className="button button--small button--dark"
-          />
+          >
+            Check price
+          </AffiliateButton>
         </div>
       </div>
     </article>

@@ -29,7 +29,7 @@ export function SiteFooter() {
           <Link href="/affiliate-disclosure">Affiliate disclosure</Link>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> : null}
         </div>
       </div>
       <div className="container site-footer__bottom">

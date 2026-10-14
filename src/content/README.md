@@ -1,9 +1,14 @@
-# Adding a new offer
+# Product content workflow
 
-1. Add optimized product images under `public/images/products/<slug>/`.
-2. Copy one product object in `src/content/products.ts` and replace every field.
-3. Add the affiliate URL as a Vercel environment variable, then reference it in the `links` object.
-4. Keep factual claims tied to the manufacturer source and include `sourceUrl` plus `reviewedDate`.
-5. Run `npm run typecheck`, `npm run lint`, and `npm run build` before deploying.
+All catalog content is controlled by `products.ts`.
 
-Never invent ratings, review counts, testing history, warranty terms, or medical claims.
+To add an offer:
+
+1. Add a product object to `products`.
+2. Put exact product-reference images under `public/images/products-v3/`.
+3. Use only a confirmed affiliate destination for that exact product/version.
+4. If colors have different affiliate destinations, add them as `variants` rather than duplicating the catalog card.
+5. Keep `sourceUrl` pointed at the manufacturer page used to verify specs.
+6. Prefer `priceLabel: 'See current price'` unless the site has an automated, reliable price feed.
+
+The catalog, collection pages, comparison page, sitemap, product routes, and related-product sections are generated from this one data source.

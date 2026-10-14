@@ -10,6 +10,13 @@ export type ProductFaq = {
   answer: string;
 };
 
+export type ProductVariant = {
+  name: string;
+  colorLabel?: string;
+  affiliateUrl: string;
+  image: string;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -21,11 +28,12 @@ export type Product = {
   tagline: string;
   description: string;
   priceLabel: string;
-  priceValue: number;
+  priceValue?: number;
   affiliateUrl: string;
   retailerUrl: string;
   image: string;
   gallery: string[];
+  variants?: ProductVariant[];
   accent: 'sage' | 'peach' | 'plum';
   featured: boolean;
   bestFor: string;
@@ -43,6 +51,7 @@ export type Product = {
   };
   sourceUrl: string;
   reviewedDate: string;
+  imageNote?: string;
 };
 
 export type ProductSummary = Pick<
@@ -60,4 +69,5 @@ export type ProductSummary = Pick<
   | 'image'
   | 'accent'
   | 'bestFor'
+  | 'variants'
 >;

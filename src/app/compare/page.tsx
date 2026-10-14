@@ -21,7 +21,7 @@ export default function ComparePage() {
         <tr><th>Ongoing upkeep</th>{products.map((p) => <td key={p.slug}>{p.comparison.upkeep}</td>)}</tr>
         <tr><th>Our verdict</th>{products.map((p) => <td key={p.slug}>{p.verdict}</td>)}</tr>
         <tr><th>Retailer</th>{products.map((p) => <td key={p.slug}><AffiliateButton href={p.affiliateUrl} product={p.slug} category={p.category} placement="comparison_table" price={p.priceValue} className="button button--small button--dark">Check price</AffiliateButton></td>)}</tr>
-      </tbody></table></div><p className="disclosure-note" style={{ marginTop: 18 }}>Affiliate links may earn Kitty Via a commission at no added cost to you. Prices shown are reference prices from the review date and can change.</p></div></section>
+      </tbody></table></div><p className="disclosure-note" style={{ marginTop: 18 }}>Affiliate links may earn Kitty Via a commission at no added cost to you. Prices and availability can change. Use the retailer button for the current price and exact version.</p></div></section>
     </>
   );
 }
