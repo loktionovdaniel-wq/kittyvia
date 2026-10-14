@@ -110,3 +110,20 @@
   .pros-cons, .spec-grid { grid-template-columns: 1fr; }
   .spec-grid__item:nth-child(odd) { border-right: 0; }
 }
+
+/* v4 — collection tiles use complete official product imagery */
+.collection-card {
+  background:
+    radial-gradient(circle at 50% 35%, #fff 0 30%, #eee9e1 70%, #ddd5c8 100%);
+}
+.collection-card img {
+  object-fit: contain;
+  object-position: center 38%;
+  padding: 12px 16px 86px;
+  transform: scale(1.035);
+  filter: drop-shadow(0 22px 28px rgba(39,34,28,.10));
+}
+.collection-card:hover img { transform: scale(1.07); }
+.collection-card::after {
+  background: linear-gradient(to top, rgba(26,23,20,.88) 0%, rgba(26,23,20,.58) 28%, rgba(26,23,20,.08) 58%, transparent 76%);
+}

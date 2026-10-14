@@ -1,17 +1,17 @@
-# Kitty Via v3
+# Kitty Via v4
 
 Production-oriented Next.js affiliate catalog for **kittyvia.com**.
 
-## What changed in v3
+## What changed in v4
 
-- Catalog expanded to **6 distinct product lines / 8 confirmed affiliate destinations**.
-- Product imagery replaced with references captured from the exact PETLIBRO offers/product pages supplied during setup.
-- Polar and One RFID pages now expose the confirmed color-specific affiliate links.
-- Granary Camera offer is labeled **Dual Bowl Black** to match the confirmed Impact product image/link.
-- Prices are intentionally shown as **“See current price”** so stale promotions are not presented as current.
-- Outbound clicks are tracked with Vercel Analytics and, optionally, GA4.
-- Pinterest attribution (`utm_*` and `pin_id`) is captured in-session and attached to GA4 affiliate-click events.
-- Catalog remains content-driven: add or update products in `src/content/products.ts`.
+- Removed all photographed-monitor / browser-screenshot product images from the storefront.
+- Product cards, collection tiles, and product pages now use clean **official PETLIBRO product images** from PETLIBRO's CDN.
+- Catalog remains at **6 distinct product lines / 8 confirmed affiliate destinations**.
+- Polar and One RFID keep color-specific affiliate destinations.
+- Product media styling was rebuilt so the full product is large, centered, uncropped, and consistent across the catalog.
+- Granary Camera Dual Bowl now links to the correct official Dual Bowl source page.
+- Prices remain **“See current price”** to avoid showing stale promotions.
+- Vercel Analytics and optional GA4 tracking remain in place.
 
 ## Confirmed affiliate destinations
 
@@ -28,60 +28,60 @@ Production-oriented Next.js affiliate catalog for **kittyvia.com**.
 
 ## Deploy over the existing Vercel project
 
-Your GitHub repository and Vercel project already exist. Do **not** create another project.
+Do **not** create a new GitHub repository or Vercel project.
 
 1. Unzip this package.
-2. In the existing `kittyvia` GitHub repository, replace the project files with the contents of this folder.
-3. Commit the changes to `main`.
-4. Vercel will detect the commit and deploy automatically.
-5. Open the generated `*.vercel.app` deployment and verify all six product pages before connecting `kittyvia.com`.
+2. In the existing `kittyvia` GitHub repository choose **Add file → Upload files**.
+3. Upload the contents of this folder over the current project files.
+4. Commit to `main`.
+5. Vercel will deploy automatically.
+6. Verify the `kittyvia.vercel.app` deployment before connecting `kittyvia.com`.
 
-## Optional Vercel environment variables
+## Image policy
 
-The project has safe fallback values for every confirmed affiliate link, so it works immediately after upload. You can later override any URL in **Vercel → Project → Settings → Environment Variables** using the names in `.env.example`.
+Catalog and product pages use clean manufacturer imagery only. Do not add:
 
-For GA4, add:
+- screenshots of PETLIBRO pages,
+- photos of a computer or phone screen,
+- Impact marketplace screenshots,
+- AI-generated substitutes for the product itself.
+
+Pinterest lifestyle creatives can still be AI-assisted, but the product shown must match the exact real SKU.
+
+## Optional environment variables
+
+The project already contains fallback values for the confirmed affiliate URLs. Optional overrides are listed in `.env.example`.
+
+GA4:
 
 ```text
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ```
 
-Optional contact/Pinterest values:
+Optional contact/Pinterest:
 
 ```text
 NEXT_PUBLIC_CONTACT_EMAIL=hello@kittyvia.com
 NEXT_PUBLIC_PINTEREST_URL=https://www.pinterest.com/yourprofile/
 ```
 
-## Pinterest links
+## Pinterest tracking
 
-For product pins, link to the matching Kitty Via product page rather than directly to PETLIBRO when you want first-party analytics. Example:
+For first-party analytics, Pinterest can link to a Kitty Via product page, for example:
 
 ```text
 https://kittyvia.com/shop/polar-smart-wet-food-feeder?utm_source=pinterest&utm_medium=organic&utm_campaign=kittyvia&utm_content=PIN_NAME
 ```
 
-The product page then sends the visitor through the confirmed affiliate link.
+The Kitty Via product page then sends the visitor through the matching confirmed affiliate link.
 
 ## Product content
 
-All product records live in:
+All product records are centralized in:
 
 ```text
 src/content/products.ts
 ```
-
-Each record controls the card, product page, compare table, category page, SEO data, product source, and outbound link.
-
-## Images
-
-Product reference assets live in:
-
-```text
-public/images/products-v3/
-```
-
-They were created from exact PETLIBRO product/offer references supplied during setup, not from the earlier incorrect AI product renders.
 
 ## Local development
 

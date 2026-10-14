@@ -11,7 +11,16 @@ const affiliate = {
   rfidMist: process.env.NEXT_PUBLIC_AFFILIATE_RFID_MIST_URL ?? 'https://petlibro.sjv.io/n4z7G9',
 };
 
-const official = '/images/products-v3';
+const officialImages = {
+  dockstream: 'https://petlibro.com/cdn/shop/files/PLWF116-Carousel-01-20250812.png?v=1754981502&width=1800',
+  luma: 'https://petlibro.com/cdn/shop/files/PLLB001-Carousel-01.2-V1_e69a007f-1172-407c-ad1c-f1484ee9ce64.png?v=1778241257&width=2400',
+  granaryWifi: 'https://petlibro.com/cdn/shop/files/AF103_e113b0c7-72d4-48a2-a27f-9ce0428bc67d.png?v=1722535619&width=1800',
+  granaryCameraDual: 'https://petlibro.com/cdn/shop/files/AF203-_-_-min_5d15b8d8-4b2a-4907-8f41-2b55a8e216f0.png?v=1725649028&width=1800',
+  polarBlack: 'https://petlibro.com/cdn/shop/files/AF109-black-Stainless_steel_bowl-02-_Compressify.io_7240ce78-7d02-4c34-9c61-1828b9b9a4ee.png?v=1764034887&width=1800',
+  polarWhite: 'https://petlibro.com/cdn/shop/files/AF109-white-Stainless_steel_bowl-02-_Compressify.io_89f9ac23-8920-4e12-a3cd-9501bb1ec24c.png?v=1764034953&width=1800',
+  rfidCharcoal: 'https://petlibro.com/cdn/shop/files/PDP-AF301-_-01_a43880d7-c9be-4dd9-bda4-1a4cce6c65bd.png?v=1785759407&width=1800',
+  rfidMist: 'https://petlibro.com/cdn/shop/files/PDP-AF301-_-01-1.png?v=1785759444&width=1800',
+};
 
 export const products: Product[] = [
   {
@@ -28,8 +37,8 @@ export const products: Product[] = [
     priceLabel: 'See current price',
     affiliateUrl: affiliate.dockstream,
     retailerUrl: 'https://petlibro.com/products/dockstream-2-smart-fountain',
-    image: `${official}/dockstream.webp`,
-    gallery: [`${official}/dockstream.webp`],
+    image: officialImages.dockstream,
+    gallery: [officialImages.dockstream],
     accent: 'sage',
     featured: true,
     bestFor: 'Cats that prefer moving water and owners who want hydration history in the PETLIBRO app.',
@@ -64,7 +73,7 @@ export const products: Product[] = [
     comparison: { setup: 'Easy', app: 'Yes', upkeep: 'Clean tank + replace filter', idealFor: 'Moving water + hydration tracking' },
     sourceUrl: 'https://petlibro.com/products/dockstream-2-smart-fountain',
     reviewedDate: 'October 2026',
-    imageNote: 'Product appearance reference captured from the official PETLIBRO product page.',
+    imageNote: 'Official PETLIBRO product imagery.',
   },
   {
     slug: 'granary-smart-feeder-5l',
@@ -80,8 +89,8 @@ export const products: Product[] = [
     priceLabel: 'See current price',
     affiliateUrl: affiliate.granaryWifi,
     retailerUrl: 'https://petlibro.com/products/petlibro-5g-wifi-automatic-pet-feeder',
-    image: `${official}/granary-wifi.webp`,
-    gallery: [`${official}/granary-wifi.webp`],
+    image: officialImages.granaryWifi,
+    gallery: [officialImages.granaryWifi],
     accent: 'peach',
     featured: true,
     bestFor: 'Owners who want automatic dry-food scheduling without paying for camera features.',
@@ -116,7 +125,7 @@ export const products: Product[] = [
     comparison: { setup: 'Easy', app: 'Yes', upkeep: 'Refill hopper + wash bowl', idealFor: 'Scheduled dry-food meals' },
     sourceUrl: 'https://petlibro.com/products/petlibro-5g-wifi-automatic-pet-feeder',
     reviewedDate: 'October 2026',
-    imageNote: 'Offer image reference captured from the PETLIBRO catalog in Impact.',
+    imageNote: 'Official PETLIBRO product imagery.',
   },
   {
     slug: 'granary-smart-camera-feeder-dual-bowl',
@@ -131,9 +140,9 @@ export const products: Product[] = [
       'A dual-bowl Granary configuration with a built-in camera, app monitoring, and the same familiar automatic dry-food routine.',
     priceLabel: 'See current price',
     affiliateUrl: affiliate.granaryCameraDual,
-    retailerUrl: 'https://petlibro.com/products/petlibro-granary-automatic-pet-feeder-with-camera',
-    image: `${official}/granary-camera-dual.webp`,
-    gallery: [`${official}/granary-camera-dual.webp`],
+    retailerUrl: 'https://petlibro.com/collections/granary/products/granary-camera-monitoring-feeder-double-food-tray',
+    image: officialImages.granaryCameraDual,
+    gallery: [officialImages.granaryCameraDual],
     accent: 'sage',
     featured: true,
     bestFor: 'Homes that want camera visibility and a dual-bowl dry-food layout.',
@@ -166,9 +175,9 @@ export const products: Product[] = [
       { question: 'Can it refrigerate wet food?', answer: 'No. For wet food, use the Polar Smart Wet Food Feeder instead.' },
     ],
     comparison: { setup: 'Moderate', app: 'Yes + camera', upkeep: 'Refill hopper + clean two bowls', idealFor: 'Camera monitoring + dual bowls' },
-    sourceUrl: 'https://petlibro.com/products/petlibro-granary-automatic-pet-feeder-with-camera',
+    sourceUrl: 'https://petlibro.com/collections/granary/products/granary-camera-monitoring-feeder-double-food-tray',
     reviewedDate: 'October 2026',
-    imageNote: 'Product appearance reference captured from the official PETLIBRO Dual Bowl product page.',
+    imageNote: 'Official PETLIBRO product imagery.',
   },
   {
     slug: 'one-rfid-smart-feeder',
@@ -184,11 +193,11 @@ export const products: Product[] = [
     priceLabel: 'See current price',
     affiliateUrl: affiliate.rfidCharcoal,
     retailerUrl: 'https://petlibro.com/products/one-rfid-pet-feeder',
-    image: `${official}/one-rfid-charcoal.webp`,
-    gallery: [`${official}/one-rfid-charcoal.webp`, `${official}/one-rfid-mist.webp`],
+    image: officialImages.rfidCharcoal,
+    gallery: [officialImages.rfidCharcoal, officialImages.rfidMist],
     variants: [
-      { name: 'Charcoal', colorLabel: 'Black', affiliateUrl: affiliate.rfidCharcoal, image: `${official}/one-rfid-charcoal.webp` },
-      { name: 'Mist', colorLabel: 'White', affiliateUrl: affiliate.rfidMist, image: `${official}/one-rfid-mist.webp` },
+      { name: 'Charcoal', colorLabel: 'Black', affiliateUrl: affiliate.rfidCharcoal, image: officialImages.rfidCharcoal },
+      { name: 'Mist', colorLabel: 'White', affiliateUrl: affiliate.rfidMist, image: officialImages.rfidMist },
     ],
     accent: 'plum',
     featured: true,
@@ -224,7 +233,7 @@ export const products: Product[] = [
     comparison: { setup: 'Moderate', app: 'Yes + RFID', upkeep: 'Wash bowl + refill hopper', idealFor: 'Preventing food stealing' },
     sourceUrl: 'https://petlibro.com/products/one-rfid-pet-feeder',
     reviewedDate: 'October 2026',
-    imageNote: 'Charcoal and Mist appearance references captured from the official PETLIBRO product page.',
+    imageNote: 'Official PETLIBRO product imagery for both confirmed color variants.',
   },
   {
     slug: 'polar-smart-wet-food-feeder',
@@ -240,11 +249,11 @@ export const products: Product[] = [
     priceLabel: 'See current price',
     affiliateUrl: affiliate.polarBlack,
     retailerUrl: 'https://petlibro.com/products/polar-wet-food-pet-feeder',
-    image: `${official}/polar-black.webp`,
-    gallery: [`${official}/polar-black.webp`, `${official}/polar-white.webp`],
+    image: officialImages.polarBlack,
+    gallery: [officialImages.polarBlack, officialImages.polarWhite],
     variants: [
-      { name: 'Black / Stainless Steel', colorLabel: 'Black', affiliateUrl: affiliate.polarBlack, image: `${official}/polar-black.webp` },
-      { name: 'White / Stainless Steel', colorLabel: 'White', affiliateUrl: affiliate.polarWhite, image: `${official}/polar-white.webp` },
+      { name: 'Black / Stainless Steel', colorLabel: 'Black', affiliateUrl: affiliate.polarBlack, image: officialImages.polarBlack },
+      { name: 'White / Stainless Steel', colorLabel: 'White', affiliateUrl: affiliate.polarWhite, image: officialImages.polarWhite },
     ],
     accent: 'peach',
     featured: true,
@@ -280,7 +289,7 @@ export const products: Product[] = [
     comparison: { setup: 'Easy', app: 'Yes', upkeep: 'Wash wet-food tray after use', idealFor: 'Scheduled wet-food meals' },
     sourceUrl: 'https://petlibro.com/products/polar-wet-food-pet-feeder',
     reviewedDate: 'October 2026',
-    imageNote: 'Black and white appearance references captured from the official PETLIBRO product page.',
+    imageNote: 'Official PETLIBRO product imagery for both confirmed color variants.',
   },
   {
     slug: 'luma-smart-litter-box',
@@ -296,8 +305,8 @@ export const products: Product[] = [
     priceLabel: 'See current price',
     affiliateUrl: affiliate.luma,
     retailerUrl: 'https://petlibro.com/products/luma-smart-litter-box',
-    image: `${official}/luma.webp`,
-    gallery: [`${official}/luma.webp`],
+    image: officialImages.luma,
+    gallery: [officialImages.luma],
     accent: 'plum',
     featured: true,
     bestFor: 'Owners prioritizing less scooping, odor control, camera visibility, and multi-cat usage tracking.',
@@ -332,7 +341,7 @@ export const products: Product[] = [
     comparison: { setup: 'Most involved', app: 'Yes + camera', upkeep: 'Empty waste + periodic deep clean', idealFor: 'Reducing daily scooping' },
     sourceUrl: 'https://petlibro.com/products/luma-smart-litter-box',
     reviewedDate: 'October 2026',
-    imageNote: 'Offer appearance reference captured from the PETLIBRO catalog in Impact.',
+    imageNote: 'Official PETLIBRO product imagery.',
   },
 ];
 
@@ -341,19 +350,19 @@ export const categoryCopy: Record<ProductCategorySlug, { title: string; descript
     title: 'Water fountains',
     eyebrow: 'Hydration',
     description: 'Running-water picks for easier drinking routines and better visibility into habits.',
-    image: `${official}/dockstream.webp`,
+    image: officialImages.dockstream,
   },
   feeding: {
     title: 'Smart feeders',
     eyebrow: 'Feeding',
     description: 'Dry food, wet food, RFID access, cameras, and scheduling — organized by the problem each solves.',
-    image: `${official}/one-rfid-charcoal.webp`,
+    image: officialImages.rfidCharcoal,
   },
   litter: {
     title: 'Litter systems',
     eyebrow: 'Litter',
     description: 'Automatic cleaning and smarter visibility into litter-box routines.',
-    image: `${official}/luma.webp`,
+    image: officialImages.luma,
   },
 };
 

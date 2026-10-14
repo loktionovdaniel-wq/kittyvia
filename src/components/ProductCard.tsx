@@ -11,9 +11,8 @@ export function ProductCard({ product, placement = 'product_card' }: { product: 
   return (
     <article className={`product-card product-card--${product.accent}`}>
       <Link href={`/shop/${product.slug}`} className="product-card__media product-card__media--official" aria-label={`Read about ${product.name}`}>
-        <Image src={product.image} alt={`${product.name} official product reference`} fill sizes="(max-width: 760px) 100vw, 33vw" />
+        <Image src={product.image} alt={`${product.name} official PETLIBRO product photo`} fill sizes="(max-width: 760px) 100vw, 33vw" quality={92} />
         <span className="product-card__badge">{product.badge}</span>
-        <span className="official-photo-pill">Official product reference</span>
       </Link>
       <div className="product-card__content">
         <p className="eyebrow">{product.brand} · {product.categoryLabel}</p>

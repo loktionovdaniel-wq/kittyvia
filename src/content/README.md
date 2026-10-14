@@ -1,14 +1,13 @@
-# Product content workflow
+# Product content
 
-All catalog content is controlled by `products.ts`.
+All product content is centralized in `src/content/products.ts`.
 
-To add an offer:
+## Adding or changing an offer
 
-1. Add a product object to `products`.
-2. Put exact product-reference images under `public/images/products-v3/`.
-3. Use only a confirmed affiliate destination for that exact product/version.
-4. If colors have different affiliate destinations, add them as `variants` rather than duplicating the catalog card.
-5. Keep `sourceUrl` pointed at the manufacturer page used to verify specs.
-6. Prefer `priceLabel: 'See current price'` unless the site has an automated, reliable price feed.
+1. Add or update the product object in `products.ts`.
+2. Use the exact confirmed affiliate URL for that SKU/variant.
+3. Use official manufacturer imagery only for catalog/product pages. Do not use screenshots of a browser, Impact, Pinterest, or a photographed monitor.
+4. If a color variant has a different affiliate link, add it under `variants`.
+5. Keep product claims tied to PETLIBRO's published specs and link to the official source page in `sourceUrl`.
 
-The catalog, collection pages, comparison page, sitemap, product routes, and related-product sections are generated from this one data source.
+Current PETLIBRO imagery is loaded from PETLIBRO's official Shopify CDN so the catalog uses clean manufacturer assets rather than screen captures.
