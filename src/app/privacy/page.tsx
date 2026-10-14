@@ -1,0 +1,8 @@
+import type { Metadata } from 'next';
+import { siteConfig } from '@/content/site';
+
+export const metadata: Metadata = { title: 'Privacy policy', description: 'How Kitty Via handles analytics and visitor information.', alternates: { canonical: '/privacy' } };
+
+export default function PrivacyPage() {
+  return <article className="legal-page"><p className="eyebrow">Last updated October 2026</p><h1>Privacy policy</h1><p>Kitty Via is designed to collect as little personal information as practical while still understanding whether the site is useful.</p><h2>Analytics</h2><p>Vercel Web Analytics and Speed Insights may collect aggregated technical and usage information such as page views, browser type, approximate region, and performance metrics. If Google Analytics is configured, it loads only after you choose to allow optional analytics in the on-site preference banner.</p><h2>Campaign information</h2><p>If you arrive through a link containing campaign parameters — for example a Pinterest campaign or pin identifier — Kitty Via may store those parameters for the current browser session and include them with aggregate click events.</p><h2>Affiliate links</h2><p>Outbound shopping links may be tracked by the affiliate network or retailer. Once you leave Kitty Via, the privacy policy of that external site applies.</p><h2>Cookies and local storage</h2><p>Kitty Via may use local or session storage to remember your analytics preference and campaign context. The current starter does not create user accounts or store payment information.</p><h2>Contact</h2><p>Privacy questions can be sent to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p></article>;
+}
