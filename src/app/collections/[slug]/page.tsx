@@ -26,7 +26,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
       <section className="page-hero">
         <div className="container about-grid">
           <div><p className="eyebrow">{category.eyebrow}</p><h1>{category.title}</h1><p>{category.description}</p></div>
-          <div className="about-image"><Image src={category.image} alt={category.title} fill priority sizes="(max-width:920px) 100vw, 48vw" /></div>
+          <div className="about-image collection-hero-image"><Image src={category.image} alt={category.title} fill priority sizes="(max-width:920px) 100vw, 48vw" /></div>
         </div>
       </section>
       <section className="section section--paper"><div className="container"><div className="product-grid">{products.map((product) => <ProductCard key={product.slug} product={product} placement={`collection_${slug}`} />)}</div></div></section>

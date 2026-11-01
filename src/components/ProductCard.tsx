@@ -11,7 +11,7 @@ export function ProductCard({ product, placement = 'product_card' }: { product: 
   return (
     <article className={`product-card product-card--${product.accent}`}>
       <Link href={`/shop/${product.slug}`} className="product-card__media product-card__media--official" aria-label={`Read about ${product.name}`}>
-        <Image src={product.image} alt={`${product.name} official PETLIBRO product photo`} fill sizes="(max-width: 760px) 100vw, 33vw" quality={92} />
+        <Image src={product.image} alt={product.imageAlt ?? `${product.name} official product photo`} fill sizes="(max-width: 760px) 100vw, 33vw" quality={85} />
         <span className="product-card__badge">{product.badge}</span>
       </Link>
       <div className="product-card__content">
@@ -21,7 +21,7 @@ export function ProductCard({ product, placement = 'product_card' }: { product: 
         <p className="product-card__best"><strong>Best for:</strong> {product.bestFor}</p>
         <div className="product-card__meta">
           <span className="price">{product.priceLabel}</span>
-          {variantsLabel ? <span className="price-note">{variantsLabel}</span> : <span className="price-note">on PETLIBRO</span>}
+          {variantsLabel ? <span className="price-note">{variantsLabel}</span> : <span className="price-note">on {product.brand}</span>}
         </div>
         <div className="product-card__actions">
           <Link href={`/shop/${product.slug}`} className="text-link">

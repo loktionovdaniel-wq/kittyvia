@@ -1,3 +1,4 @@
+import { tuftAndPawProducts } from './tuft-and-paw';
 import type { Product, ProductCategorySlug, ProductSummary } from '@/types/product';
 
 const affiliate = {
@@ -23,6 +24,7 @@ const officialImages = {
 };
 
 export const products: Product[] = [
+  ...tuftAndPawProducts,
   {
     slug: 'dockstream-2-smart-cordless-fountain',
     name: 'PETLIBRO Dockstream 2 Smart Cordless Fountain',
@@ -346,6 +348,9 @@ export const products: Product[] = [
 ];
 
 export const categoryCopy: Record<ProductCategorySlug, { title: string; description: string; image: string; eyebrow: string }> = {
+  comfort: { title: 'Beds & window perches', eyebrow: 'Comfort', description: 'Soft places to curl up and a front-row seat to the world outside.', image: tuftAndPawProducts[0].image },
+  scratching: { title: 'Scratching posts', eyebrow: 'Scratching', description: 'A dedicated place to stretch, scratch, and settle into the day.', image: tuftAndPawProducts[3].image },
+  travel: { title: 'Cat carriers', eyebrow: 'Travel', description: 'Considered carriers for comfortable trips beyond the front door.', image: tuftAndPawProducts[2].image },
   hydration: {
     title: 'Water fountains',
     eyebrow: 'Hydration',
@@ -353,15 +358,15 @@ export const categoryCopy: Record<ProductCategorySlug, { title: string; descript
     image: officialImages.dockstream,
   },
   feeding: {
-    title: 'Smart feeders',
+    title: 'Food & feeders',
     eyebrow: 'Feeding',
-    description: 'Dry food, wet food, RFID access, cameras, and scheduling — organized by the problem each solves.',
+    description: 'Wet food and smart feeders — thoughtful options for the daily meal routine.',
     image: officialImages.rfidCharcoal,
   },
   litter: {
-    title: 'Litter systems',
+    title: 'Litter essentials',
     eyebrow: 'Litter',
-    description: 'Automatic cleaning and smarter visibility into litter-box routines.',
+    description: 'From unscented litter and an organized manual box to automatic cleaning.',
     image: officialImages.luma,
   },
 };
@@ -375,7 +380,7 @@ export function getProductsByCategory(category: ProductCategorySlug): Product[] 
 }
 
 export function getProductSummaries(): ProductSummary[] {
-  return products.map(({ slug, name, shortName, brand, category, categoryLabel, badge, tagline, priceLabel, affiliateUrl, image, accent, bestFor, variants }) => ({
-    slug, name, shortName, brand, category, categoryLabel, badge, tagline, priceLabel, affiliateUrl, image, accent, bestFor, variants,
+  return products.map(({ slug, name, shortName, brand, category, categoryLabel, badge, tagline, priceLabel, affiliateUrl, image, imageAlt, accent, bestFor, variants }) => ({
+    slug, name, shortName, brand, category, categoryLabel, badge, tagline, priceLabel, affiliateUrl, image, imageAlt, accent, bestFor, variants,
   }));
 }

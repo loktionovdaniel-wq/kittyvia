@@ -35,7 +35,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
-  const related = getProductSummaries().filter((item) => item.slug !== product.slug).slice(0, 3);
+  const related = getProductSummaries().filter((item) => item.slug !== product.slug).sort((a, b) => Number(b.category === product.category) - Number(a.category === product.category)).slice(0, 3);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Shop', href: '/shop' }, { label: product.shortName }]} />
           <div className="product-layout">
             <div>
-              <ProductGallery images={product.gallery} name={product.name} />
+              <ProductGallery images={product.gallery} name={product.name} alts={product.galleryAlts} />
               {product.imageNote ? <p className="image-source-note">{product.imageNote}</p> : null}
             </div>
             <aside className="product-summary">
@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <p className="product-summary__tagline">{product.tagline}</p>
               <p>{product.description}</p>
               <div className="product-summary__verdict"><strong>Kitty Via take:</strong> {product.verdict}</div>
-              <div className="product-summary__price"><span className="price">{product.priceLabel}</span><span className="price-note">directly on PETLIBRO</span></div>
+              <div className="product-summary__price"><span className="price">{product.priceLabel}</span><span className="price-note">directly on {product.brand}</span></div>
 
               {product.variants && product.variants.length > 1 ? (
                 <VariantPurchase variants={product.variants} product={product.slug} category={product.category} placement="product_hero" />
@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 </div>
               )}
 
-              <p className="disclosure-note">Affiliate link. Kitty Via may earn a commission at no extra cost to you. Always confirm the current price, exact version, shipping, and availability on PETLIBRO.</p>
+              <p className="disclosure-note">Affiliate link. Kitty Via may earn a commission at no extra cost to you. Always confirm the current price, exact version, shipping, and availability on {product.brand}.</p>
               <div className="feature-list">
                 {product.features.map((feature) => (
                   <div className="feature-list__item" key={feature.title}>
@@ -89,12 +89,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </section>
 
           <section className="product-section product-section__grid">
-            <div><p className="eyebrow">Specifications</p><h2>The details that affect daily life</h2><p>Condensed from published PETLIBRO information. Verify the latest model details on the brand page before purchasing.</p></div>
+            <div><p className="eyebrow">Specifications</p><h2>The details that affect daily life</h2><p>Condensed from published {product.brand} information. Verify the latest model details on the brand page before purchasing.</p></div>
             <dl className="spec-grid">{product.specifications.map((spec) => <div className="spec-grid__item" key={spec.label}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}</dl>
           </section>
 
           <section className="product-section product-section__grid">
-            <div><p className="eyebrow">Questions</p><h2>Before you buy</h2><p>Reviewed {product.reviewedDate}. Manufacturer source: <a className="text-link" href={product.sourceUrl} target="_blank" rel="noopener noreferrer">PETLIBRO product page</a>.</p></div>
+            <div><p className="eyebrow">Questions</p><h2>Before you buy</h2><p>Reviewed {product.reviewedDate}. Manufacturer source: <a className="text-link" href={product.sourceUrl} target="_blank" rel="noopener noreferrer">{product.brand} product page</a>.</p></div>
             <div className="faq-list">{product.faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
           </section>
 

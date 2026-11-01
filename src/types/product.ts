@@ -1,4 +1,4 @@
-export type ProductCategorySlug = 'hydration' | 'feeding' | 'litter';
+export type ProductCategorySlug = 'hydration' | 'feeding' | 'litter' | 'comfort' | 'scratching' | 'travel';
 
 export type ProductFeature = {
   title: string;
@@ -33,6 +33,8 @@ export type Product = {
   retailerUrl: string;
   image: string;
   gallery: string[];
+  imageAlt?: string;
+  galleryAlts?: string[];
   variants?: ProductVariant[];
   accent: 'sage' | 'peach' | 'plum';
   featured: boolean;
@@ -67,6 +69,7 @@ export type ProductSummary = Pick<
   | 'priceLabel'
   | 'affiliateUrl'
   | 'image'
+  | 'imageAlt'
   | 'accent'
   | 'bestFor'
   | 'variants'

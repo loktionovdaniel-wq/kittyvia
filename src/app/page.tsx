@@ -25,6 +25,7 @@ const homeFaq = [
 
 export default function HomePage() {
   const summaries = getProductSummaries();
+  const smartProducts = products.filter((product) => product.brand === 'PETLIBRO');
   return (
     <>
       <section className="hero">
@@ -33,7 +34,7 @@ export default function HomePage() {
             <p className="eyebrow">Thoughtful picks for happier routines</p>
             <h1>Smarter cat care, chosen with care.</h1>
             <p className="lede">
-              Shortlists that help you solve the daily stuff — water, meals, and litter — without opening thirty tabs.
+              Shortlists that help you solve the daily stuff — water, meals, litter, and a comfortable place to curl up — without opening thirty tabs.
             </p>
             <div className="hero__actions">
               <Link href="/shop" className="button button--dark">Shop our picks <ArrowRightIcon /></Link>
@@ -51,7 +52,7 @@ export default function HomePage() {
             </div>
             <div className="hero__note">
               <strong>Start with the routine.</strong>
-              <span>Choose hydration, feeding, or litter — then compare only the details that matter.</span>
+              <span>Choose a daily essential or a cozy upgrade — then compare only the details that matter.</span>
             </div>
           </div>
         </div>
@@ -63,6 +64,20 @@ export default function HomePage() {
         <div className="trust-row__item"><strong>Clear caveats</strong><span>Upkeep, fit, and compatibility are shown before the buy button.</span></div>
         <div className="trust-row__item"><strong>Easy exit</strong><span>One clear click to verify the latest price on the brand site.</span></div>
       </div>
+
+      <section className="section section--paper" id="tuft-and-paw">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">New to Kitty Via · Tuft &amp; Paw</p>
+            <h2>A little more comfort. A lot more cat.</h2>
+            <p className="lede">Seven thoughtful finds for window watching, cozy naps, scratching, mealtimes, and getting out the door.</p>
+            <p className="disclosure-note">Affiliate links: Kitty Via may earn a commission at no extra cost to you.</p>
+          </div>
+          <div className="product-grid">
+            {summaries.filter((product) => product.brand === 'Tuft & Paw').map((product) => <ProductCard key={product.slug} product={product} placement="home_tuft_and_paw" />)}
+          </div>
+        </div>
+      </section>
 
       <section className="section">
         <div className="container">
@@ -90,12 +105,12 @@ export default function HomePage() {
       <section className="section section--paper">
         <div className="container">
           <div className="section-heading section-heading--center">
-            <p className="eyebrow">Our current catalog</p>
-            <h2>Six focused picks, one clear catalog</h2>
+            <p className="eyebrow">The smart-care collection</p>
+            <h2>Smart essentials for everyday care</h2>
             <p className="lede">From hydration to RFID meal control and refrigerated wet food, every pick has a specific job — and the tradeoffs are visible before you leave Kitty Via.</p>
           </div>
           <div className="product-grid">
-            {summaries.map((product) => <ProductCard key={product.slug} product={product} placement="home_featured" />)}
+            {summaries.filter((product) => product.brand === 'PETLIBRO').map((product) => <ProductCard key={product.slug} product={product} placement="home_featured" />)}
           </div>
         </div>
       </section>
@@ -122,17 +137,17 @@ export default function HomePage() {
       <section className="section section--ink">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow" style={{ color: 'rgba(255,255,255,.62)' }}>Fast comparison</p>
+            <p className="eyebrow" style={{ color: 'rgba(255,255,255,.62)' }}>Smart-care comparison</p>
             <h2>See the tradeoff in one glance.</h2>
           </div>
           <div className="compare-preview">
             <table>
               <tbody>
-                <tr><th>Product</th>{products.map((product) => <td key={product.slug}><strong>{product.shortName}</strong></td>)}</tr>
-                <tr><th>Best for</th>{products.map((product) => <td key={product.slug}>{product.comparison.idealFor}</td>)}</tr>
-                <tr><th>Setup</th>{products.map((product) => <td key={product.slug}>{product.comparison.setup}</td>)}</tr>
-                <tr><th>App</th>{products.map((product) => <td key={product.slug}>{product.comparison.app}</td>)}</tr>
-                <tr><th>Upkeep</th>{products.map((product) => <td key={product.slug}>{product.comparison.upkeep}</td>)}</tr>
+                <tr><th>Product</th>{smartProducts.map((product) => <td key={product.slug}><strong>{product.shortName}</strong></td>)}</tr>
+                <tr><th>Best for</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.idealFor}</td>)}</tr>
+                <tr><th>Setup</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.setup}</td>)}</tr>
+                <tr><th>App</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.app}</td>)}</tr>
+                <tr><th>Upkeep</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.upkeep}</td>)}</tr>
               </tbody>
             </table>
           </div>

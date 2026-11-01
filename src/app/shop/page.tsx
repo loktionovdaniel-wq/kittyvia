@@ -4,7 +4,7 @@ import { getProductSummaries } from '@/content/products';
 
 export const metadata: Metadata = {
   title: 'Shop cat-care picks',
-  description: 'Browse Kitty Via recommendations for smart water fountains, feeders, and litter systems.',
+  description: 'Browse Kitty Via recommendations for cat furniture, carriers, food, litter, fountains, and feeders.',
   alternates: { canonical: '/shop' },
 };
 
