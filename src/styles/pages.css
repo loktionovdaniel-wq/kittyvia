@@ -132,3 +132,17 @@
 .collection-hero-image img { object-fit: contain; padding: 24px; }
 .compare-category { margin-bottom: 48px; }
 .compare-category h2 { margin-bottom: 20px; }
+
+/* Catalog-first home: the full assortment starts immediately after a compact intro. */
+.home-catalog { padding: 32px 0 48px; }
+.home-catalog__intro { margin-bottom: 24px; }
+.home-catalog__intro .eyebrow { margin-bottom: 10px; }
+.home-catalog__intro h1 { font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.12; margin-bottom: 10px; }
+.home-catalog__intro > p:not(.eyebrow) { margin-bottom: 12px; color: var(--muted); }
+.home-catalog__links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.home-catalog__disclosure { margin-top: 24px; }
+@media (max-width: 680px) {
+  .home-catalog { padding-top: 20px; }
+  .home-catalog__intro { margin-bottom: 20px; }
+  .home-catalog__intro > p:not(.eyebrow) { font-size: .9rem; }
+}
