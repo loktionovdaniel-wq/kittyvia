@@ -160,3 +160,7 @@
   .product-card__media--official img,
   .product-gallery__item img { padding: 0; }
 }
+
+/* Paired studio/lifestyle galleries keep both official photos complete. */
+.product-gallery--pair { grid-template-columns: 1fr; }
+.product-gallery--pair .product-gallery__item { min-height: 0; aspect-ratio: 1; }
