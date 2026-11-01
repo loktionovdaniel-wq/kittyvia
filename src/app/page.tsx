@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { ProductCard } from '@/components/ProductCard';
-import { ArrowRightIcon, CheckIcon, ShieldIcon, SparkleIcon } from '@/components/Icons';
-import { categoryCopy, getProductSummaries, products } from '@/content/products';
+import { ArrowRightIcon } from '@/components/Icons';
+import { getProductSummaries } from '@/content/products';
 
 const homeFaq = [
   {
@@ -24,143 +23,29 @@ const homeFaq = [
 ];
 
 export default function HomePage() {
-  const summaries = getProductSummaries();
-  const smartProducts = products.filter((product) => product.brand === 'PETLIBRO');
+  const products = getProductSummaries();
   return (
     <>
-      <section className="hero">
-        <div className="container hero__grid">
-          <div className="hero__copy">
-            <p className="eyebrow">Thoughtful picks for happier routines</p>
-            <h1>Smarter cat care, chosen with care.</h1>
-            <p className="lede">
-              Shortlists that help you solve the daily stuff — water, meals, litter, and a comfortable place to curl up — without opening thirty tabs.
-            </p>
-            <div className="hero__actions">
-              <Link href="/shop" className="button button--dark">Shop our picks <ArrowRightIcon /></Link>
-              <Link href="/compare" className="button button--ghost">Compare side by side</Link>
-            </div>
-            <div className="hero__micro">
-              <span><CheckIcon /> Clear tradeoffs</span>
-              <span><ShieldIcon /> Transparent affiliate links</span>
-              <span><SparkleIcon /> Mobile-first guides</span>
-            </div>
-          </div>
-          <div className="hero__visual">
-            <div className="hero__visual-main">
-              <Image src="/images/brand/hero-kitten.webp" alt="Small gray kitten relaxing in a cozy bed" fill priority sizes="(max-width: 920px) 100vw, 48vw" />
-            </div>
-            <div className="hero__note">
-              <strong>Start with the routine.</strong>
-              <span>Choose a daily essential or a cozy upgrade — then compare only the details that matter.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="container trust-row" aria-label="Kitty Via principles">
-        <div className="trust-row__item"><strong>Problem-first</strong><span>Recommendations start with the routine you want to improve.</span></div>
-        <div className="trust-row__item"><strong>No fake ratings</strong><span>We do not invent review counts or pretend to be the retailer.</span></div>
-        <div className="trust-row__item"><strong>Clear caveats</strong><span>Upkeep, fit, and compatibility are shown before the buy button.</span></div>
-        <div className="trust-row__item"><strong>Easy exit</strong><span>One clear click to verify the latest price on the brand site.</span></div>
-      </div>
-
-      <section className="section section--paper" id="tuft-and-paw">
+      <section className="home-catalog" aria-labelledby="home-catalog-title">
         <div className="container">
-          <div className="section-heading">
-            <p className="eyebrow">New to Kitty Via · Tuft &amp; Paw</p>
-            <h2>A little more comfort. A lot more cat.</h2>
-            <p className="lede">Seven thoughtful finds for window watching, cozy naps, scratching, mealtimes, and getting out the door.</p>
-            <p className="disclosure-note">Affiliate links: Kitty Via may earn a commission at no extra cost to you.</p>
+          <header className="home-catalog__intro">
+            <p className="eyebrow">The complete Kitty Via collection · {products.length} picks</p>
+            <h1 id="home-catalog-title">All our picks. All in one place.</h1>
+            <p>Thoughtful essentials for your cat — explore the full collection below.</p>
+            <div className="home-catalog__links">
+              <Link href="/shop" className="text-link">Filter &amp; search <ArrowRightIcon /></Link>
+              <Link href="/compare" className="text-link">Compare products <ArrowRightIcon /></Link>
+            </div>
+          </header>
+          <div className="product-grid" id="all-products">
+            {products.map((product) => <ProductCard key={product.slug} product={product} placement="home_catalog" />)}
           </div>
-          <div className="product-grid">
-            {summaries.filter((product) => product.brand === 'Tuft & Paw').map((product) => <ProductCard key={product.slug} product={product} placement="home_tuft_and_paw" />)}
-          </div>
+          <p className="disclosure-note home-catalog__disclosure">Affiliate links may earn Kitty Via a commission at no extra cost to you. Confirm current prices and availability with the retailer.</p>
         </div>
       </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-heading">
-            <p className="eyebrow">Choose your starting point</p>
-            <h2>What would make the routine easier?</h2>
-            <p className="lede">You do not need a giant catalog. You need the right shortlist for the problem in front of you.</p>
-          </div>
-          <div className="collection-grid">
-            {Object.entries(categoryCopy).map(([slug, category]) => (
-              <Link key={slug} href={`/collections/${slug}`} className="collection-card">
-                <Image src={category.image} alt={category.title} fill sizes="(max-width:680px) 100vw, 33vw" />
-                <div className="collection-card__content">
-                  <p className="eyebrow">{category.eyebrow}</p>
-                  <h3>{category.title}</h3>
-                  <p>{category.description}</p>
-                  <span className="text-link">Explore collection <ArrowRightIcon /></span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section section--paper">
         <div className="container">
-          <div className="section-heading section-heading--center">
-            <p className="eyebrow">The smart-care collection</p>
-            <h2>Smart essentials for everyday care</h2>
-            <p className="lede">From hydration to RFID meal control and refrigerated wet food, every pick has a specific job — and the tradeoffs are visible before you leave Kitty Via.</p>
-          </div>
-          <div className="product-grid">
-            {summaries.filter((product) => product.brand === 'PETLIBRO').map((product) => <ProductCard key={product.slug} product={product} placement="home_featured" />)}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container editorial-split">
-          <div className="editorial-split__media">
-            <Image src="/images/editorial/kittens-cuddling.webp" alt="Two kittens resting together" fill sizes="(max-width:920px) 100vw, 48vw" />
-          </div>
-          <div className="editorial-split__copy">
-            <p className="eyebrow">Designed for real decisions</p>
-            <h2>Beautiful enough to enjoy. Clear enough to trust.</h2>
-            <p className="lede">A product page should not make you decode marketing. We organize every guide around three questions.</p>
-            <div className="editorial-points">
-              <div className="editorial-point"><span className="editorial-point__num">01</span><div><h3>Who is it actually for?</h3><p>The problem, household, and routine where the product makes sense.</p></div></div>
-              <div className="editorial-point"><span className="editorial-point__num">02</span><div><h3>What work remains?</h3><p>Filters, cleaning, refills, compatibility, and other ongoing upkeep.</p></div></div>
-              <div className="editorial-point"><span className="editorial-point__num">03</span><div><h3>What should I verify?</h3><p>Current price, color, shipping, warranty, and manufacturer guidance.</p></div></div>
-            </div>
-            <Link href="/how-we-choose" className="button button--ghost">See our full method <ArrowRightIcon /></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--ink">
-        <div className="container">
-          <div className="section-heading">
-            <p className="eyebrow" style={{ color: 'rgba(255,255,255,.62)' }}>Smart-care comparison</p>
-            <h2>See the tradeoff in one glance.</h2>
-          </div>
-          <div className="compare-preview">
-            <table>
-              <tbody>
-                <tr><th>Product</th>{smartProducts.map((product) => <td key={product.slug}><strong>{product.shortName}</strong></td>)}</tr>
-                <tr><th>Best for</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.idealFor}</td>)}</tr>
-                <tr><th>Setup</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.setup}</td>)}</tr>
-                <tr><th>App</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.app}</td>)}</tr>
-                <tr><th>Upkeep</th>{smartProducts.map((product) => <td key={product.slug}>{product.comparison.upkeep}</td>)}</tr>
-              </tbody>
-            </table>
-          </div>
-          <div style={{ marginTop: 28 }}><Link href="/compare" className="button button--light">Open full comparison <ArrowRightIcon /></Link></div>
-        </div>
-      </section>
-
-      <section className="section section--paper">
-        <div className="container">
-          <div className="section-heading section-heading--center">
-            <p className="eyebrow">Common questions</p>
-            <h2>Before you click through</h2>
-          </div>
+          <div className="section-heading"><p className="eyebrow">Common questions</p><h2>Before you click through</h2></div>
           <div className="faq-list">
             {homeFaq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
           </div>
