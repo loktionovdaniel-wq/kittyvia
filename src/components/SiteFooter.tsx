@@ -21,8 +21,11 @@ export function SiteFooter() {
         <div>
           <h2>Collections</h2>
           <Link href="/collections/hydration">Water fountains</Link>
-          <Link href="/collections/feeding">Smart feeders</Link>
-          <Link href="/collections/litter">Litter systems</Link>
+          <Link href="/collections/feeding">Food & feeders</Link>
+          <Link href="/collections/litter">Litter essentials</Link>
+          <Link href="/collections/comfort">Beds & perches</Link>
+          <Link href="/collections/scratching">Scratching posts</Link>
+          <Link href="/collections/travel">Travel</Link>
         </div>
         <div>
           <h2>Legal</h2>

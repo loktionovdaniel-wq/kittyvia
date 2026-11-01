@@ -29,7 +29,7 @@ export function productSchema(product: Product) {
     '@type': 'Product',
     name: product.name,
     description: product.description,
-    image: product.gallery.map((image) => `${siteConfig.url}${image}`),
+    image: product.gallery.map((image) => new URL(image, siteConfig.url).href),
     brand: { '@type': 'Brand', name: product.brand },
     category: product.categoryLabel,
     url: `${siteConfig.url}/shop/${product.slug}`,

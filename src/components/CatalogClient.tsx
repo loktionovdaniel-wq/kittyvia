@@ -8,8 +8,11 @@ import { SearchIcon } from '@/components/Icons';
 const filters: Array<{ value: 'all' | ProductCategorySlug; label: string }> = [
   { value: 'all', label: 'All picks' },
   { value: 'hydration', label: 'Hydration' },
-  { value: 'feeding', label: 'Feeding' },
+  { value: 'feeding', label: 'Food & feeders' },
   { value: 'litter', label: 'Litter' },
+  { value: 'comfort', label: 'Beds & perches' },
+  { value: 'scratching', label: 'Scratching' },
+  { value: 'travel', label: 'Travel' },
 ];
 
 export function CatalogClient({
@@ -49,6 +52,7 @@ export function CatalogClient({
               type="button"
               className={filter.value === category ? 'filter-chip is-active' : 'filter-chip'}
               onClick={() => setCategory(filter.value)}
+              aria-pressed={filter.value === category}
             >
               {filter.label}
             </button>

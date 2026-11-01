@@ -127,3 +127,8 @@
 .collection-card::after {
   background: linear-gradient(to top, rgba(26,23,20,.88) 0%, rgba(26,23,20,.58) 28%, rgba(26,23,20,.08) 58%, transparent 76%);
 }
+
+.collection-hero-image { min-height: 360px; background: #f5f2ec; }
+.collection-hero-image img { object-fit: contain; padding: 24px; }
+.compare-category { margin-bottom: 48px; }
+.compare-category h2 { margin-bottom: 20px; }
